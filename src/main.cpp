@@ -1,17 +1,10 @@
 #include <iostream>
 
-#include "geometry/shapes.hpp"
-#include "ui/Main.h"
+#include "ui/MainWindow.h"
 
 int main(int argc, char *argv[]) {
-    int i = 10;
-    i++;
-    geometry::Point p;
-    
-    std::cout << "Hello World" << std::endl;
-    
-    QApplication a(argc, argv);
-    Main w;
-    w.show();
-    return a.exec();
+    QApplication qApplication(argc, argv);
+    MainWindow mainWindow;
+    mainWindow.show();
+    return qApplication.exec();
 }

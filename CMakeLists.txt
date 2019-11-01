@@ -10,13 +10,16 @@ find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
 set(
         UI_RESOURCES
-                "resources/ui/Main.ui"
+                "resources/ui/MainWindow.ui"
 )
 set(
         UI_HEADERS
-                "include/ui/Main.h"
+                "include/ui/MainWindow.h"
 )
-
+set(
+        UI_SOURCES
+                "src/ui/MainWindow.cpp"
+)
 set(
 	GEOMETRY_SOURCES
 		"include/geometry/shapes.hpp"
@@ -26,7 +29,7 @@ set(
 set(
 	SOURCES
 		"src/main.cpp"
-                "src/ui/Main.cpp"
+                ${UI_SOURCES}
                 ${UI_RESOURCES}
 )
 qt5_wrap_ui(SOURCES ${UI_RESOURCES})
