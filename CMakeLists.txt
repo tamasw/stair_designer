@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.10)
-project (StairWars)
+project (StairDesigner)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 include_directories(include)
@@ -34,9 +34,9 @@ qt5_wrap_cpp(SOURCES ${UI_HEADERS})
 
 add_library(geometry ${GEOMETRY_SOURCES})
 
-add_executable(stairwars ${SOURCES})
+add_executable(stair_designer ${SOURCES})
 
-target_link_libraries(stairwars 
+target_link_libraries(stair_designer 
         geometry 
         Qt5::Core
 	Qt5::Gui 
