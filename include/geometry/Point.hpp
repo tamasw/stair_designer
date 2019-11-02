@@ -2,23 +2,9 @@
 
 #include <functional>
 
-namespace geometry {
+#include "Shape.hpp"
 
-class Shape {
-    public:
-        enum Type {
-            POINT,
-            LINE
-        };
-        
-        Type getType() const { return type; }
-        
-    protected:
-        Shape(Type type) : type(type) {}
-        
-    private:
-        Type type;
-};    
+namespace geometry {
     
 class PointComparator;
 
@@ -55,19 +41,5 @@ class PointComparator {
         std::function<bool(double, double)> comparatorFunction;
 };
 
-class Line : public Shape {
-    public:
-        Line(double offset, double angle);
-        Line(const Point& p1, const Point& p2);
-        
-        double getOffset() const;
-        double getAngle() const;
-        
-    protected:
-        double offset;
-        double angle;
-};
-
 }
-
 

@@ -1,8 +1,6 @@
-#include <functional>
+#include "geometry/Point.hpp"
 
-#include "geometry/shapes.hpp"
-
-namespace geometry {
+using namespace geometry;
     
 Point::Point(double x, double y)
 : Shape(Shape::Type::POINT)
@@ -80,30 +78,5 @@ Point& PointComparator::operator()(Point& point1, Point& point2) {
     double value1 = getterFunction(point1);
     double value2 = getterFunction(point2);
     return comparatorFunction(value1, value2) ? point1 : point2;
-}
-
-Line::Line(double offset, double angle)
-: Shape(Shape::Type::LINE)
-, offset(offset)
-, angle(angle)
-{
-}
-
-Line::Line(const Point& p1, const Point& p2)
-: Shape(Shape::Type::LINE)
-{
-    
-}
-
-double Line::getOffset() const
-{
-    return offset;
-}
-
-double Line::getAngle() const
-{
-    return angle;
-}
-
 }
 

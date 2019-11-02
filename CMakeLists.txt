@@ -22,8 +22,12 @@ set(
 )
 set(
 	GEOMETRY_SOURCES
-		"include/geometry/shapes.hpp"
-		"src/geometry/shapes.cpp"
+		"include/geometry/Shape.hpp"
+		"include/geometry/Point.hpp"
+		"src/geometry/Point.cpp"
+		"include/geometry/Line.hpp"
+		"src/geometry/Line.cpp"
+
 )
 
 set(

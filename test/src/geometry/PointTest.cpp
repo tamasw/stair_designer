@@ -1,7 +1,6 @@
-#include "geometry/shapes.hpp"
-
 #include "gtest/gtest.h"
-#include <iostream>
+
+#include "geometry/Point.hpp"
 
 using namespace geometry;
 
@@ -72,18 +71,5 @@ TEST(point_comparator_max_y, geometry)
     Point p2(5, 2);
     Point& max = Point::comparator().max().onYAxis()(p1, p2);
     ASSERT_EQ(max, p1);
-}
-
-TEST(line_type, geometry)
-{
-    Line line(0, 1);
-    ASSERT_EQ(Shape::Type::LINE, line.getType());
-}
-
-TEST(line_parameters, geometry)
-{
-    Line line(0, 1);
-    ASSERT_EQ(0, line.getOffset());
-    ASSERT_EQ(1, line.getAngle());
 }
 

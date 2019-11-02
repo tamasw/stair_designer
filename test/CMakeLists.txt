@@ -3,7 +3,8 @@ find_package(GTest REQUIRED)
 
 set(
 	TESTS
-	"src/geometry/shapesTest.cpp"
+	"src/geometry/LineTest.cpp"
+        "src/geometry/PointTest.cpp"
 	"src/main.cpp"
 )
 
