@@ -41,6 +41,12 @@ bool Point::operator !=(const Point& other) const
     return !(*this == other);
 }
 
+std::ostream& operator<<(std::ostream& out, const geometry::Point& point)
+{
+    out << "Point(" << point.getX() << ", " << point.getY() << ")";
+    return out;
+}
+
 PointComparator Point::comparator()
 {
     return PointComparator();

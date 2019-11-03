@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <functional>
 
 #include "Shape.hpp"
@@ -49,4 +50,7 @@ class PointComparator {
 };
 
 }
+
+std::ostream& operator<<(std::ostream& out, const geometry::Point& point);
+
 
