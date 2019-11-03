@@ -65,3 +65,39 @@ TEST_F(GenericLineTest, angles)
     ASSERT_EQ(2, steepOffsetedLine->getAngle());
     ASSERT_EQ(-2, reverseLine->getAngle());
 }
+
+TEST_F(GenericLineTest, pointAtX)
+{
+    ASSERT_EQ(Point(10, 10), simpleLine->getPointAtX(10).get());
+    ASSERT_EQ(Point(-3, -3), simpleLine->getPointAtX(-3).get());
+    
+    ASSERT_EQ(Point(10, 12), offsetedLine->getPointAtX(10).get());
+    ASSERT_EQ(Point(-3, -1), offsetedLine->getPointAtX(-3).get());
+    
+    ASSERT_EQ(Point(10, 40), steepLine->getPointAtX(10).get());
+    ASSERT_EQ(Point(-3, -12), steepLine->getPointAtX(-3).get());
+ 
+    ASSERT_EQ(Point(10, 23), steepOffsetedLine->getPointAtX(10).get());
+    ASSERT_EQ(Point(-3, -3), steepOffsetedLine->getPointAtX(-3).get());
+    
+    ASSERT_EQ(Point(10, -15), reverseLine->getPointAtX(10).get());
+    ASSERT_EQ(Point(-3, 11), reverseLine->getPointAtX(-3).get());
+}
+
+TEST_F(GenericLineTest, pointAtY)
+{
+    ASSERT_EQ(Point(10, 10), simpleLine->getPointAtY(10).get());
+    ASSERT_EQ(Point(-3, -3), simpleLine->getPointAtY(-3).get());
+    
+    ASSERT_EQ(Point(10, 12), offsetedLine->getPointAtY(12).get());
+    ASSERT_EQ(Point(-3, -1), offsetedLine->getPointAtY(-1).get());
+    
+    ASSERT_EQ(Point(10, 40), steepLine->getPointAtY(40).get());
+    ASSERT_EQ(Point(-3, -12), steepLine->getPointAtY(-12).get());
+ 
+    ASSERT_EQ(Point(10, 23), steepOffsetedLine->getPointAtY(23).get());
+    ASSERT_EQ(Point(-3, -3), steepOffsetedLine->getPointAtY(-3).get());
+    
+    ASSERT_EQ(Point(10, -15), reverseLine->getPointAtY(-15).get());
+    ASSERT_EQ(Point(-3, 11), reverseLine->getPointAtY(11).get());
+}

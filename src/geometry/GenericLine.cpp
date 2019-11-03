@@ -7,7 +7,6 @@ GenericLine::GenericLine(double xOffset, double angle)
 , xOffset(xOffset)
 , angle(angle)
 {
-    
 }
 
 double GenericLine::getXOffset() const {
@@ -23,10 +22,10 @@ double GenericLine::getAngle() const {
 }
         
 util::Optional<Point> GenericLine::getPointAtX(const double x) const {
-    
+    return util::Optional<Point>::of(Point(x, x*angle + getYOffset()));
 }
 
 util::Optional<Point> GenericLine::getPointAtY(const double y) const {
-    
+    return util::Optional<Point>::of(Point(xOffset + y / angle, y));
 }
 
