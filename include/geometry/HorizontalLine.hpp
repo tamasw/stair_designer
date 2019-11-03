@@ -1,12 +1,8 @@
 #pragma once
 
-#include "Shape.hpp"
-#include "Line.hpp"
-
 namespace geometry {
     
-class GenericLine : public Line {
-    
+class HorizontalLine : public Line {
         util::Optional<double> getXOffset() const override;
         util::Optional<double> getYOffset() const override;
         util::Optional<double> getAngle() const override;
@@ -15,14 +11,12 @@ class GenericLine : public Line {
         util::Optional<Point> getPointAtY(const double y) const override;
         
     protected:
-        GenericLine(double xOffset, double angle);
+        HorizontalLine(double yOffset);
         
-        double xOffset;
-        double angle;
+        double yOffset;
         
-        friend class Line;
-   }; 
+        friend class Line;    
+};
     
 }
-
 
