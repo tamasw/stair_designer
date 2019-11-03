@@ -48,6 +48,15 @@ TEST_F(GenericLineTest, xOffsets)
     ASSERT_EQ(2.5, reverseLine->getXOffset());
 }
 
+TEST_F(GenericLineTest, yOffsets)
+{
+    ASSERT_EQ(0, simpleLine->getYOffset());
+    ASSERT_EQ(2, offsetedLine->getYOffset());
+    ASSERT_EQ(0, steepLine->getYOffset());
+    ASSERT_EQ(3, steepOffsetedLine->getYOffset());
+    ASSERT_EQ(5, reverseLine->getYOffset());
+}
+
 TEST_F(GenericLineTest, angles)
 {
     ASSERT_EQ(1, simpleLine->getAngle());
