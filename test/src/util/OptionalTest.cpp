@@ -35,3 +35,13 @@ TEST(UtilTest, optional_copy_construct)
     ASSERT_TRUE(optional2.available());
     ASSERT_EQ(optional2.get(), 13);
 }
+
+TEST(UtilTest, optional_move_construct)
+{
+    Optional<int> optional1 = Optional<int>::of(12);
+    Optional<int> optional2(std::move(optional1));
+    optional2.get()++;
+    ASSERT_FALSE(optional1.available());
+    ASSERT_TRUE(optional2.available());
+    ASSERT_EQ(optional2.get(), 13);
+}

@@ -38,6 +38,10 @@ class Optional {
             }
         }
         
+        Optional(Optional<T>&& other) noexcept
+        : value(std::move(other.value))
+        {
+        }
     private:
         Optional(T value)
             : value(std::make_unique<T>(value))
