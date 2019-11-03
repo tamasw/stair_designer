@@ -25,11 +25,13 @@ double Point::getY() const
     return y;
 }
 
-void Point::setX(double x) {
+void Point::setX(double x)
+{
     this->x = x;
 }
 
-void Point::setY(double y) {
+void Point::setY(double y)
+{
     this->y = y;
 }
 
@@ -39,7 +41,8 @@ bool Point::operator !=(const Point& other) const
     return !(*this == other);
 }
 
-PointComparator Point::comparator() {
+PointComparator Point::comparator()
+{
     return PointComparator();
 }
 
@@ -53,30 +56,27 @@ PointComparator::PointComparator()
 , comparatorFunction(std::less<double>())
 {
 }
-
-PointComparator& PointComparator::onXAxis() {
+        
+PointComparator& PointComparator::onXAxis()
+{
     getterFunction = std::bind(&Point::getX, std::placeholders::_1);
     return *this;
 }
-
-PointComparator& PointComparator::onYAxis() {
+        
+PointComparator& PointComparator::onYAxis()
+{
     getterFunction = std::bind(&Point::getY, std::placeholders::_1);
     return *this;
 }
-
-PointComparator& PointComparator::min() {
+        
+PointComparator& PointComparator::min()
+{
     comparatorFunction = std::less<double>();
     return *this;
 }
-
-PointComparator& PointComparator::max() {
+        
+PointComparator& PointComparator::max()
+{
     comparatorFunction = std::greater<double>();
-    return *this;
+    return *this;   
 }
-
-Point& PointComparator::operator()(Point& point1, Point& point2) {
-    double value1 = getterFunction(point1);
-    double value2 = getterFunction(point2);
-    return comparatorFunction(value1, value2) ? point1 : point2;
-}
-

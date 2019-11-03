@@ -29,13 +29,20 @@ class Point : public Shape {
 
 class PointComparator {
     public:
+        
         PointComparator();
         PointComparator& onXAxis();
         PointComparator& onYAxis();
         PointComparator& min();
         PointComparator& max();
         
-        Point& operator()(Point& point1, Point& point2);
+        template <class P>
+        auto operator()(P& point1, P& point2) -> decltype(point1)
+        {
+            double value1 = getterFunction(point1);
+            double value2 = getterFunction(point2);
+            return comparatorFunction(value1, value2) ? point1 : point2;
+        }
     private:
         std::function<double(const Point&)> getterFunction;
         std::function<bool(double, double)> comparatorFunction;

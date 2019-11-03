@@ -8,7 +8,7 @@ class Shape {
     public:
         enum Type {
             POINT,
-            LINE
+            GENERIC_LINE
         };
         
         Type getType() const { return type; }
@@ -21,5 +21,4 @@ class Shape {
 };    
     
 }
-
 

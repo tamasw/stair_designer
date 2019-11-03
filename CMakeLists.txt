@@ -26,8 +26,14 @@ set(
 		"include/geometry/Point.hpp"
 		"src/geometry/Point.cpp"
 		"include/geometry/Line.hpp"
-		"src/geometry/Line.cpp"
+                "src/geometry/Line.cpp"
+                "include/geometry/GenericLine.hpp"
+                "src/geometry/GenericLine.cpp"
+)
 
+set(
+        UTIL_SOURCES
+                "util/Optional.hpp"
 )
 
 set(

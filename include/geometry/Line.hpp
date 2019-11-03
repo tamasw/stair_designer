@@ -1,5 +1,8 @@
 #pragma once
 
+#include <optional>
+
+#include "util/Optional.hpp"
 #include "Shape.hpp"
 #include "Point.hpp"
 
@@ -7,15 +10,18 @@ namespace geometry {
 
 class Line : public Shape {
     public:
-        Line(double offset, double angle);
-        Line(const Point& p1, const Point& p2);
+        static Line* newInstance(const Point& point1, const Point& point2);
         
-        double getOffset() const;
-        double getAngle() const;
+        virtual double getXOffset() const = 0;
+        virtual double getYOffset() const = 0;
+        virtual double getAngle() const = 0;
+        
+        virtual util::Optional<Point> getPointAtX(const double x) const = 0;
+        virtual util::Optional<Point> getPointAtY(const double y) const = 0;
         
     protected:
-        double offset;
-        double angle;
+        Line(Shape::Type type);
+        
 };
 
 }

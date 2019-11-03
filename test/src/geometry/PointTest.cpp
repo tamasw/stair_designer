@@ -4,20 +4,20 @@
 
 using namespace geometry;
 
-TEST(point_type, geometry)
+TEST(PointTest, point_type)
 {
     Point p(1, 0);
     ASSERT_EQ(p.getType(), Shape::Type::POINT);
 }
 
-TEST(point_getters, geometry)
+TEST(PointTest, point_getters)
 {
     Point p(2, 4);
     ASSERT_EQ(2, p.getX());
     ASSERT_EQ(4, p.getY());
 }
 
-TEST(point_setters, geometry)
+TEST(PointTest, point_setters)
 {
     Point p(2, 4);
     p.setX(1);
@@ -25,7 +25,7 @@ TEST(point_setters, geometry)
     ASSERT_EQ(p, Point(1, 5));
 }
 
-TEST(point_equality, geometry)
+TEST(PointTest, point_equality)
 {
     Point p1(0, 1);
     Point p2(0, 1);
@@ -33,7 +33,7 @@ TEST(point_equality, geometry)
     ASSERT_FALSE(p1 != p2);
 }
 
-TEST(point_unequality, geometry)
+TEST(PointTest, point_unequality)
 {
     Point p1(0, 3);
     Point p2(0, 1);
@@ -41,7 +41,7 @@ TEST(point_unequality, geometry)
     ASSERT_TRUE(p1 != p2);
 }
 
-TEST(point_comparator_min_x, geometry)
+TEST(PointTest, point_comparator_min_x)
 {
     Point p1(2, 5);
     Point p2(5, 2);
@@ -49,7 +49,7 @@ TEST(point_comparator_min_x, geometry)
     ASSERT_EQ(min, p1);
 }
 
-TEST(point_comparator_max_x, geometry)
+TEST(PointTest, point_comparator_max_x)
 {
     Point p1(2, 5);
     Point p2(5, 2);
@@ -57,7 +57,7 @@ TEST(point_comparator_max_x, geometry)
     ASSERT_EQ(max, p2);
 }
 
-TEST(point_comparator_min_y, geometry)
+TEST(PointTest, point_comparator_min_y)
 {
     Point p1(2, 5);
     Point p2(5, 2);
@@ -65,7 +65,7 @@ TEST(point_comparator_min_y, geometry)
     ASSERT_EQ(min, p2);
 }
 
-TEST(point_comparator_max_y, geometry)
+TEST(PointTest, point_comparator_max_y)
 {
     Point p1(2, 5);
     Point p2(5, 2);
