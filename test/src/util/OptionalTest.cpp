@@ -45,3 +45,9 @@ TEST(UtilTest, optional_move_construct)
     ASSERT_TRUE(optional2.available());
     ASSERT_EQ(optional2.get(), 13);
 }
+
+TEST(UtilTest, optional_except_if_unavailable)
+{
+    Optional<int> optional = Optional<int>::empty();
+    ASSERT_THROW(optional.get(), std::runtime_error);
+}
