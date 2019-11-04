@@ -23,6 +23,7 @@ class Line : public Shape {
         Line(Shape::Type type);
     
     private:
+        static void checkPoints(const Point& point1, const Point& point2);
         static bool isHorizontal(const Point& point1, const Point& point2);
         
         static Line* createHorizontalLine(const Point& point1, const Point& point2);

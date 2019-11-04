@@ -51,3 +51,26 @@ TEST(UtilTest, optional_except_if_unavailable)
     Optional<int> optional = Optional<int>::empty();
     ASSERT_THROW(optional.get(), std::runtime_error);
 }
+
+struct Parent {
+    virtual int getType() { return 0; }
+};
+
+struct Child: public Parent {
+    virtual int getType() override { return 1; }
+};
+
+TEST(UtilTest, optional_inheritance)
+{
+    Child child;
+    Optional<Parent> parent = Optional<Child>::of(child);
+    ASSERT_EQ(1, parent.get().getType());
+}
+
+TEST(UtilTest, optional_inheritance_via_copy_construct)
+{
+    Child child;
+    Optional<Child> optionalChild = Optional<Child>::of(child);
+    Optional<Parent> optionalParent(optionalChild);
+    ASSERT_EQ(1, optionalParent.get().getType());
+}

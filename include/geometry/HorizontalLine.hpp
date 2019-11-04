@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Line.hpp"
+#include "util/Optional.hpp"
+
 namespace geometry {
     
 class HorizontalLine : public Line {

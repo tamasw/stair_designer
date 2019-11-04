@@ -4,6 +4,8 @@ find_package(GTest REQUIRED)
 set(
 	TESTS
 	"src/geometry/CustomLineTest.cpp"
+        "src/geometry/HorizontalLineTest.cpp"
+        "src/geometry/LineTest.cpp"
         "src/geometry/PointTest.cpp"
         
         "src/util/OptionalTest.cpp"

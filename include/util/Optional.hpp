@@ -14,7 +14,8 @@ class Optional {
             return Optional<T>();
         }
         
-        static Optional<T> of(T value)
+        template <typename U>
+        static Optional<T> of(const U& value)
         {
             return Optional<T>(value);
         }
@@ -29,7 +30,16 @@ class Optional {
             if( !available() ) { throw std::runtime_error("Optional not available"); }
             return *value;
         }
-    
+        
+        template <typename U>
+        Optional(const Optional<U>& other)
+        : value(nullptr)
+        {
+            if(other.available()) {
+                value.reset(new U(*other.value));
+            }
+        }
+        
         Optional(const Optional<T>& other)
         : value(nullptr)
         {
@@ -42,8 +52,10 @@ class Optional {
         : value(std::move(other.value))
         {
         }
-    private:
-        Optional(T value)
+        
+    protected:
+        
+        Optional(const T& value)
             : value(std::make_unique<T>(value))
             {}
             
@@ -52,6 +64,9 @@ class Optional {
             {}
         
         std::unique_ptr<T> value;
+        
+        template <typename U>
+        friend class Optional;
 };
     
 }
