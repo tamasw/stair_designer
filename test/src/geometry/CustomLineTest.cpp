@@ -2,13 +2,13 @@
 #include <memory>
 #include "gtest/gtest.h"
 
-#include "geometry/GenericLine.hpp"
+#include "geometry/CustomLine.hpp"
 
 using namespace geometry;
 
-class GenericLineTest : public ::testing::Test {
+class CustomLineTest : public ::testing::Test {
 protected:
-    GenericLineTest()
+    CustomLineTest()
     : Test()
     {}
     
@@ -30,22 +30,22 @@ protected:
 
 };
 
-std::unique_ptr<Line> GenericLineTest::simpleLine(Line::newInstance(Point(0, 0), Point(2, 2)));
-std::unique_ptr<Line> GenericLineTest::offsetedLine(Line::newInstance(Point(0, 2), Point(1, 3)));
-std::unique_ptr<Line> GenericLineTest::steepLine(Line::newInstance(Point(1, 4), Point(2, 8)));
-std::unique_ptr<Line> GenericLineTest::steepOffsetedLine(Line::newInstance(Point(0, 3), Point(1, 5)));
-std::unique_ptr<Line> GenericLineTest::reverseLine(Line::newInstance(Point(0, 5), Point(1, 3)));
+std::unique_ptr<Line> CustomLineTest::simpleLine(Line::newInstance(Point(0, 0), Point(2, 2)));
+std::unique_ptr<Line> CustomLineTest::offsetedLine(Line::newInstance(Point(0, 2), Point(1, 3)));
+std::unique_ptr<Line> CustomLineTest::steepLine(Line::newInstance(Point(1, 4), Point(2, 8)));
+std::unique_ptr<Line> CustomLineTest::steepOffsetedLine(Line::newInstance(Point(0, 3), Point(1, 5)));
+std::unique_ptr<Line> CustomLineTest::reverseLine(Line::newInstance(Point(0, 5), Point(1, 3)));
 
-TEST_F(GenericLineTest, line_type)
+TEST_F(CustomLineTest, line_type)
 {
-    ASSERT_EQ(Shape::Type::GENERIC_LINE, simpleLine->getType());
-    ASSERT_EQ(Shape::Type::GENERIC_LINE, offsetedLine->getType());
-    ASSERT_EQ(Shape::Type::GENERIC_LINE, steepLine->getType());
-    ASSERT_EQ(Shape::Type::GENERIC_LINE, steepOffsetedLine->getType());
-    ASSERT_EQ(Shape::Type::GENERIC_LINE, reverseLine->getType());
+    ASSERT_EQ(Shape::Type::CUSTOM_LINE, simpleLine->getType());
+    ASSERT_EQ(Shape::Type::CUSTOM_LINE, offsetedLine->getType());
+    ASSERT_EQ(Shape::Type::CUSTOM_LINE, steepLine->getType());
+    ASSERT_EQ(Shape::Type::CUSTOM_LINE, steepOffsetedLine->getType());
+    ASSERT_EQ(Shape::Type::CUSTOM_LINE, reverseLine->getType());
 }
 
-TEST_F(GenericLineTest, xOffsets)
+TEST_F(CustomLineTest, xOffsets)
 {
     std::function<util::Optional<double>(Line*)> getXOffset(&Line::getXOffset);
     
@@ -56,7 +56,7 @@ TEST_F(GenericLineTest, xOffsets)
     ASSERT_EQ(2.5, getResult(reverseLine, getXOffset));
 }
 
-TEST_F(GenericLineTest, yOffsets)
+TEST_F(CustomLineTest, yOffsets)
 {
     std::function<util::Optional<double>(Line*)> getYOffset(&Line::getYOffset);
     
@@ -67,7 +67,7 @@ TEST_F(GenericLineTest, yOffsets)
     ASSERT_EQ(5, getResult(reverseLine, getYOffset));
 }
 
-TEST_F(GenericLineTest, angles)
+TEST_F(CustomLineTest, angles)
 {
     std::function<util::Optional<double>(Line*)> getAngle(&Line::getAngle);
     
@@ -78,7 +78,7 @@ TEST_F(GenericLineTest, angles)
     ASSERT_EQ(-2, getResult(reverseLine, getAngle));
 }
 
-TEST_F(GenericLineTest, pointAtX)
+TEST_F(CustomLineTest, pointAtX)
 {
     std::function<util::Optional<Point>(Line*, double)> getPointAtX(&Line::getPointAtX);
     
@@ -98,7 +98,7 @@ TEST_F(GenericLineTest, pointAtX)
     ASSERT_EQ(Point(-3, 11), getResult(reverseLine, getPointAtX, -3.0));
 }
 
-TEST_F(GenericLineTest, pointAtY)
+TEST_F(CustomLineTest, pointAtY)
 {
     std::function<util::Optional<Point>(Line*, double)> getPointAtY(&Line::getPointAtY);
     

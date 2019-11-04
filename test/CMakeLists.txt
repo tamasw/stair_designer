@@ -3,7 +3,7 @@ find_package(GTest REQUIRED)
 
 set(
 	TESTS
-	"src/geometry/GenericLineTest.cpp"
+	"src/geometry/CustomLineTest.cpp"
         "src/geometry/PointTest.cpp"
         
         "src/util/OptionalTest.cpp"

@@ -8,7 +8,7 @@ class Shape {
     public:
         enum Type {
             POINT,
-            GENERIC_LINE,
+            CUSTOM_LINE,
             HORIZONTAL_LINE
         };
         

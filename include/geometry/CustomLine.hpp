@@ -5,7 +5,7 @@
 
 namespace geometry {
     
-class GenericLine : public Line {
+class CustomLine : public Line {
     
         util::Optional<double> getXOffset() const override;
         util::Optional<double> getYOffset() const override;
@@ -15,7 +15,7 @@ class GenericLine : public Line {
         util::Optional<Point> getPointAtY(const double y) const override;
         
     protected:
-        GenericLine(double xOffset, double angle);
+        CustomLine(double xOffset, double angle);
         
         double xOffset;
         double angle;

@@ -27,8 +27,8 @@ set(
 		"src/geometry/Point.cpp"
 		"include/geometry/Line.hpp"
                 "src/geometry/Line.cpp"
-                "include/geometry/GenericLine.hpp"
-                "src/geometry/GenericLine.cpp"
+                "include/geometry/CustomLine.hpp"
+                "src/geometry/CustomLine.cpp"
 )
 
 set(

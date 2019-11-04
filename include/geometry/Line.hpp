@@ -21,6 +21,12 @@ class Line : public Shape {
         
     protected:
         Line(Shape::Type type);
+    
+    private:
+        static bool isHorizontal(const Point& point1, const Point& point2);
+        
+        static Line* createHorizontalLine(const Point& point1, const Point& point2);
+        static Line* createCustomLine(const Point& point1, const Point& point2);
 };
 
 }
