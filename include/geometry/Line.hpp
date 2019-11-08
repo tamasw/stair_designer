@@ -25,8 +25,10 @@ class Line : public Shape {
     private:
         static void checkPoints(const Point& point1, const Point& point2);
         static bool isHorizontal(const Point& point1, const Point& point2);
+        static bool isVertical(const Point& point1, const Point& point2);
         
         static Line* createHorizontalLine(const Point& point1, const Point& point2);
+        static Line* createVerticalLine(const Point& point1, const Point& point2);
         static Line* createCustomLine(const Point& point1, const Point& point2);
 };
 

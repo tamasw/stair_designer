@@ -9,7 +9,8 @@ class Shape {
         enum Type {
             POINT,
             CUSTOM_LINE,
-            HORIZONTAL_LINE
+            HORIZONTAL_LINE,
+            VERTICAL_LINE
         };
         
         Type getType() const { return type; }

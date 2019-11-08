@@ -31,6 +31,8 @@ set(
                 "src/geometry/CustomLine.cpp"
                 "include/geometry/HorizontalLine.hpp"
                 "src/geometry/HorizontalLine.cpp"
+                "include/geometry/VerticalLine.hpp"
+                "src/geometry/VerticalLine.cpp"
 )
 
 set(

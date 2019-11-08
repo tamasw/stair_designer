@@ -5,6 +5,7 @@ set(
 	TESTS
 	"src/geometry/CustomLineTest.cpp"
         "src/geometry/HorizontalLineTest.cpp"
+        "src/geometry/VerticalLineTest.cpp"
         "src/geometry/LineTest.cpp"
         "src/geometry/PointTest.cpp"
         
