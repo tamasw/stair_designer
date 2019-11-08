@@ -13,10 +13,10 @@ util::Optional<double> HorizontalLine::getXOffset() const
 {
     return util::Optional<double>::empty();
 }
-
 util::Optional<double> HorizontalLine::getYOffset() const
 {
     return util::Optional<double>::of(yOffset);
+
 }
 
 util::Optional<double> HorizontalLine::getAngle() const
@@ -24,13 +24,16 @@ util::Optional<double> HorizontalLine::getAngle() const
     return util::Optional<double>::empty();
 }
         
-util::Optional<Point> HorizontalLine::getPointAtX(const double x) const
+util::Optional<Shape> HorizontalLine::getShapeAtX(const double x) const
 {
     return util::Optional<Point>::of(Point(x, yOffset));
 }
 
-util::Optional<Point> HorizontalLine::getPointAtY(const double y) const
+util::Optional<Shape> HorizontalLine::getShapeAtY(const double y) const
 {
-    
+    if(y == yOffset) {
+        return util::Optional<HorizontalLine>::of(HorizontalLine(yOffset));
+    }
+    return util::Optional<Shape>::empty();
 }
 

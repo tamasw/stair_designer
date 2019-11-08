@@ -2,6 +2,7 @@
 #include <memory>
 #include "gtest/gtest.h"
 
+#include "LineTester.hpp"
 #include "geometry/CustomLine.hpp"
 
 using namespace geometry;
@@ -15,12 +16,6 @@ protected:
     static void SetUpTestSuite() {}
     
     static void TearDownTestSuite() {}
-    
-    template<class T, typename... Args>
-    T getResult(std::unique_ptr<Line>& line, std::function<util::Optional<T>(Line*, Args...)> function, Args... args)
-    {
-        return function(line.get(), args...).get();
-    }
     
     static std::unique_ptr<Line> simpleLine;
     static std::unique_ptr<Line> offsetedLine;
@@ -47,73 +42,74 @@ TEST_F(CustomLineTest, line_type)
 
 TEST_F(CustomLineTest, xOffsets)
 {
-    std::function<util::Optional<double>(Line*)> getXOffset(&Line::getXOffset);
+    LineTester<double, double> tester(&Line::getXOffset);
     
-    ASSERT_EQ(0, getResult(simpleLine, getXOffset));
-    ASSERT_EQ(-2, getResult(offsetedLine, getXOffset));
-    ASSERT_EQ(0, getResult(steepLine, getXOffset));
-    ASSERT_EQ(-1.5, getResult(steepOffsetedLine, getXOffset));
-    ASSERT_EQ(2.5, getResult(reverseLine, getXOffset));
+    ASSERT_EQ(0, tester.getResult(simpleLine));
+    ASSERT_EQ(0, tester.getResult(simpleLine));
+    ASSERT_EQ(-2, tester.getResult(offsetedLine));
+    ASSERT_EQ(0, tester.getResult(steepLine));
+    ASSERT_EQ(-1.5, tester.getResult(steepOffsetedLine));
+    ASSERT_EQ(2.5, tester.getResult(reverseLine));
 }
 
 TEST_F(CustomLineTest, yOffsets)
 {
-    std::function<util::Optional<double>(Line*)> getYOffset(&Line::getYOffset);
+    LineTester<double, double> tester(&Line::getYOffset);
     
-    ASSERT_EQ(0, getResult(simpleLine, getYOffset));
-    ASSERT_EQ(2, getResult(offsetedLine, getYOffset));
-    ASSERT_EQ(0, getResult(steepLine, getYOffset));
-    ASSERT_EQ(3, getResult(steepOffsetedLine, getYOffset));
-    ASSERT_EQ(5, getResult(reverseLine, getYOffset));
+    ASSERT_EQ(0, tester.getResult(simpleLine));
+    ASSERT_EQ(2, tester.getResult(offsetedLine));
+    ASSERT_EQ(0, tester.getResult(steepLine));
+    ASSERT_EQ(3, tester.getResult(steepOffsetedLine));
+    ASSERT_EQ(5, tester.getResult(reverseLine));
 }
 
 TEST_F(CustomLineTest, angles)
 {
-    std::function<util::Optional<double>(Line*)> getAngle(&Line::getAngle);
+    LineTester<double, double> tester(&Line::getAngle);
     
-    ASSERT_EQ(1, getResult(simpleLine, getAngle));
-    ASSERT_EQ(1, getResult(offsetedLine, getAngle));
-    ASSERT_EQ(4, getResult(steepLine, getAngle));
-    ASSERT_EQ(2, getResult(steepOffsetedLine, getAngle));
-    ASSERT_EQ(-2, getResult(reverseLine, getAngle));
+    ASSERT_EQ(1, tester.getResult(simpleLine));
+    ASSERT_EQ(1, tester.getResult(offsetedLine));
+    ASSERT_EQ(4, tester.getResult(steepLine));
+    ASSERT_EQ(2, tester.getResult(steepOffsetedLine));
+    ASSERT_EQ(-2, tester.getResult(reverseLine));
 }
 
 TEST_F(CustomLineTest, pointAtX)
 {
-    std::function<util::Optional<Point>(Line*, double)> getPointAtX(&Line::getPointAtX);
+    LineTester<Point, Shape, double> tester(&Line::getShapeAtX);
     
-    ASSERT_EQ(Point(10, 10), getResult(simpleLine, getPointAtX, 10.0));
-    ASSERT_EQ(Point(-3, -3), getResult(simpleLine, getPointAtX, -3.0));
+    ASSERT_EQ(Point(10, 10), tester.getResult(simpleLine, 10.0));
+    ASSERT_EQ(Point(-3, -3), tester.getResult(simpleLine, -3.0));
     
-    ASSERT_EQ(Point(10, 12), getResult(offsetedLine, getPointAtX, 10.0));
-    ASSERT_EQ(Point(-3, -1), getResult(offsetedLine, getPointAtX, -3.0));
+    ASSERT_EQ(Point(10, 12), tester.getResult(offsetedLine, 10.0));
+    ASSERT_EQ(Point(-3, -1), tester.getResult(offsetedLine, -3.0));
     
-    ASSERT_EQ(Point(10, 40), getResult(steepLine, getPointAtX, 10.0));
-    ASSERT_EQ(Point(-3, -12), getResult(steepLine, getPointAtX, -3.0));
+    ASSERT_EQ(Point(10, 40), tester.getResult(steepLine, 10.0));
+    ASSERT_EQ(Point(-3, -12), tester.getResult(steepLine, -3.0));
  
-    ASSERT_EQ(Point(10, 23), getResult(steepOffsetedLine, getPointAtX, 10.0));
-    ASSERT_EQ(Point(-3, -3), getResult(steepOffsetedLine, getPointAtX, -3.0));
+    ASSERT_EQ(Point(10, 23), tester.getResult(steepOffsetedLine, 10.0));
+    ASSERT_EQ(Point(-3, -3), tester.getResult(steepOffsetedLine, -3.0));
     
-    ASSERT_EQ(Point(10, -15), getResult(reverseLine, getPointAtX, 10.0));
-    ASSERT_EQ(Point(-3, 11), getResult(reverseLine, getPointAtX, -3.0));
+    ASSERT_EQ(Point(10, -15), tester.getResult(reverseLine, 10.0));
+    ASSERT_EQ(Point(-3, 11), tester.getResult(reverseLine, -3.0));
 }
 
 TEST_F(CustomLineTest, pointAtY)
 {
-    std::function<util::Optional<Point>(Line*, double)> getPointAtY(&Line::getPointAtY);
+    LineTester<Point, Shape, double> tester(&Line::getShapeAtY);
     
-    ASSERT_EQ(Point(10, 10), getResult(simpleLine, getPointAtY, 10.0));
-    ASSERT_EQ(Point(-3, -3), getResult(simpleLine, getPointAtY, -3.0));
+    ASSERT_EQ(Point(10, 10), tester.getResult(simpleLine, 10.0));
+    ASSERT_EQ(Point(-3, -3), tester.getResult(simpleLine, -3.0));
     
-    ASSERT_EQ(Point(10, 12), getResult(offsetedLine, getPointAtY, 12.0));
-    ASSERT_EQ(Point(-3, -1), getResult(offsetedLine, getPointAtY, -1.0));
+    ASSERT_EQ(Point(10, 12), tester.getResult(offsetedLine, 12.0));
+    ASSERT_EQ(Point(-3, -1), tester.getResult(offsetedLine, -1.0));
     
-    ASSERT_EQ(Point(10, 40), getResult(steepLine, getPointAtY, 40.0));
-    ASSERT_EQ(Point(-3, -12), getResult(steepLine, getPointAtY, -12.0));
+    ASSERT_EQ(Point(10, 40), tester.getResult(steepLine, 40.0));
+    ASSERT_EQ(Point(-3, -12), tester.getResult(steepLine, -12.0));
  
-    ASSERT_EQ(Point(10, 23), getResult(steepOffsetedLine, getPointAtY, 23.0));
-    ASSERT_EQ(Point(-3, -3), getResult(steepOffsetedLine, getPointAtY, -3.0));
+    ASSERT_EQ(Point(10, 23), tester.getResult(steepOffsetedLine, 23.0));
+    ASSERT_EQ(Point(-3, -3), tester.getResult(steepOffsetedLine, -3.0));
     
-    ASSERT_EQ(Point(10, -15), getResult(reverseLine, getPointAtY, -15.0));
-    ASSERT_EQ(Point(-3, 11), getResult(reverseLine, getPointAtY, 11.0));
+    ASSERT_EQ(Point(10, -15), tester.getResult(reverseLine, -15.0));
+    ASSERT_EQ(Point(-3, 11), tester.getResult(reverseLine, 11.0));
 }

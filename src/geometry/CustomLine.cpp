@@ -21,11 +21,11 @@ util::Optional<double> CustomLine::getAngle() const {
     return util::Optional<double>::of(angle);
 }
         
-util::Optional<Point> CustomLine::getPointAtX(const double x) const {
+util::Optional<Shape> CustomLine::getShapeAtX(const double x) const {
     return util::Optional<Point>::of(Point(x, x*angle + getYOffset().get()));
 }
 
-util::Optional<Point> CustomLine::getPointAtY(const double y) const {
+util::Optional<Shape> CustomLine::getShapeAtY(const double y) const {
     return util::Optional<Point>::of(Point(xOffset + y / angle, y));
 }
 

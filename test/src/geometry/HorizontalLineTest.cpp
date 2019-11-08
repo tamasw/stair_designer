@@ -2,6 +2,8 @@
 
 #include "gtest/gtest.h"
 #include "geometry/Line.hpp"
+#include "geometry/HorizontalLine.hpp"
+#include "LineTester.hpp"
 
 using namespace geometry;
 
@@ -28,7 +30,8 @@ TEST_F(HorizontalLineTest, xOffset)
 
 TEST_F(HorizontalLineTest, yOffset)
 {
-    ASSERT_EQ(2, horizontalLine->getYOffset().get());
+    LineTester<double, double> tester(&Line::getYOffset);
+    ASSERT_EQ(2, tester.getResult(horizontalLine));
 }
 
 TEST_F(HorizontalLineTest, angle)
@@ -38,10 +41,19 @@ TEST_F(HorizontalLineTest, angle)
 
 TEST_F(HorizontalLineTest, getPointAtX)
 {
-    ASSERT_EQ(Point(3, 2), horizontalLine->getPointAtX(3).get());
+    LineTester<Point&, Shape, double> tester(&Line::getShapeAtX);
+    ASSERT_EQ(Point(3, 2), tester.getResult(horizontalLine, 3));
 }
 
 TEST_F(HorizontalLineTest, getPointAtY)
 {
-    ASSERT_FALSE(horizontalLine->getAngle().available());
+    LineTester<HorizontalLine, Shape, double> tester(&Line::getShapeAtY);
+    ASSERT_EQ(Shape::Type::HORIZONTAL_LINE, tester.getResult(horizontalLine, 2).getType());
+    ASSERT_EQ(2.0, tester.getResult(horizontalLine, 2).getYOffset().get());
+}
+
+TEST_F(HorizontalLineTest, getPointAtY_invalid)
+{
+    LineTester<HorizontalLine, Shape, double> tester(&Line::getShapeAtY);
+    ASSERT_FALSE(horizontalLine->getShapeAtY(100).available());
 }

@@ -14,6 +14,7 @@ class Shape {
         
         Type getType() const { return type; }
         
+        virtual ~Shape() {}
     protected:
         Shape(Type type) : type(type) {}
         
